@@ -18,7 +18,7 @@ export default function TestimonialSlide({ testimonial }: TestimonialSlideProps)
       className="flex flex-col items-center text-center px-8 md:px-16"
     >
       <blockquote className="font-playfair text-3xl md:text-4xl lg:text-5xl font-normal italic text-white leading-relaxed mb-8">
-        "{testimonial.quote}"
+        &quot;{testimonial.quote}&quot;
       </blockquote>
       <div className="flex flex-col items-center gap-4">
         <div className="relative w-16 h-16 rounded-full overflow-hidden">

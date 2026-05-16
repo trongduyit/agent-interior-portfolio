@@ -44,7 +44,7 @@ export default function AboutSection() {
           </div>
 
           <blockquote className="font-cormorant text-2xl md:text-3xl italic text-text-primary leading-relaxed">
-            "Design is not just what it looks like and feels like. Design is how it works."
+            &quot;Design is not just what it looks like and feels like. Design is how it works.&quot;
           </blockquote>
           <p className="font-inter text-text-secondary leading-relaxed">
             With over a decade of experience in luxury interior design, we transform spaces into
