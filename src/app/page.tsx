@@ -7,6 +7,7 @@ import AboutSection from '@/components/AboutSection'
 import ServicesSection from '@/components/ServicesSection'
 import ProjectsSection from '@/components/ProjectsSection'
 import TestimonialsSection from '@/components/TestimonialsSection'
+import VisitorGallery from '@/components/gallery/VisitorGallery'
 import ContactSection from '@/components/ContactSection'
 import Footer from '@/components/Footer'
 
@@ -16,6 +17,7 @@ const sections = [
   'services',
   'projects',
   'testimonials',
+  'gallery',
   'contact',
 ] as const
 
@@ -35,6 +37,7 @@ export default function Home() {
       <ServicesSection />
       <ProjectsSection />
       <TestimonialsSection />
+      <VisitorGallery />
       <ContactSection />
       <Footer />
     </main>
