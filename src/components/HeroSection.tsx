@@ -7,27 +7,27 @@ import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
 const heroSlides = [
   {
     id: '1',
-    image: '/images/hero/hero-1.jpg',
+    image: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&h=1080&fit=crop',
     alt: 'Luxury living room interior',
   },
   {
     id: '2',
-    image: '/images/hero/hero-2.jpg',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&h=1080&fit=crop',
     alt: 'Modern kitchen design',
   },
   {
     id: '3',
-    image: '/images/hero/hero-3.jpg',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&h=1080&fit=crop',
     alt: 'Executive office space',
   },
   {
     id: '4',
-    image: '/images/hero/hero-4.jpg',
+    image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1920&h=1080&fit=crop',
     alt: 'Spa bathroom design',
   },
   {
     id: '5',
-    image: '/images/hero/hero-5.jpg',
+    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&h=1080&fit=crop',
     alt: 'Villa entrance',
   },
 ]

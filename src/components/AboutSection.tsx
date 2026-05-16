@@ -23,7 +23,7 @@ export default function AboutSection() {
           <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto">
             <div className="absolute inset-0 rounded-full bg-secondary/20 -z-10 top-4 left-4" />
             <Image
-              src="/images/about-photo.jpg"
+              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&h=600&fit=crop"
               alt="Interior Designer"
               fill
               className="object-cover rounded-full"
