@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import LoadingScreen from '@/components/LoadingScreen'
 import NavigationDots from '@/components/NavigationDots'
 import HeroSection from '@/components/HeroSection'
 import AboutSection from '@/components/AboutSection'
@@ -23,23 +24,28 @@ const sections = [
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState(0)
+  const [isLoading, setIsLoading] = useState(true)
 
   return (
-    <main className="relative">
-      <NavigationDots
-        sections={sections}
-        activeIndex={activeSection}
-        onNavigate={setActiveSection}
-      />
+    <>
+      {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
 
-      <HeroSection />
-      <AboutSection />
-      <ServicesSection />
-      <ProjectsSection />
-      <TestimonialsSection />
-      <VisitorGallery />
-      <ContactSection />
-      <Footer />
-    </main>
+      <main className="relative">
+        <NavigationDots
+          sections={sections}
+          activeIndex={activeSection}
+          onNavigate={setActiveSection}
+        />
+
+        <HeroSection />
+        <AboutSection />
+        <ServicesSection />
+        <ProjectsSection />
+        <TestimonialsSection />
+        <VisitorGallery />
+        <ContactSection />
+        <Footer />
+      </main>
+    </>
   )
 }
