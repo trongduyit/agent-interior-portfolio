@@ -59,10 +59,17 @@ export default function Header() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative group"
           >
-            <span className="font-playfair text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#d4af37] via-[#f0d78c] to-[#d4af37] bg-clip-text text-transparent">
-              AID
+            <span className="relative font-cormorant text-2xl md:text-3xl font-semibold tracking-wider">
+              <span className="bg-gradient-to-r from-[#d4af37] via-[#f5e6a3] to-[#d4af37] bg-clip-text text-transparent">
+                Trâm Huỳnh
+              </span>
+              <motion.span
+                className="absolute -bottom-1 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"
+                initial={{ scaleX: 0, opacity: 0 }}
+                animate={{ scaleX: isVisible ? 1 : 0, opacity: isVisible ? 1 : 0 }}
+                transition={{ duration: 1, delay: 0.8, ease: 'easeInOut' }}
+              />
             </span>
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#d4af37] transition-all duration-300 group-hover:w-full" />
           </motion.a>
 
           {/* Desktop Navigation */}
