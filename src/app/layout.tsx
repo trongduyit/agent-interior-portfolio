@@ -1,29 +1,10 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, Inter, Cormorant_Garamond } from 'next/font/google'
 import './globals.css'
-
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-playfair',
-  weight: ['400', '600', '700'],
-})
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  weight: ['400', '500', '600'],
-})
-
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  variable: '--font-cormorant',
-  weight: ['400'],
-  style: ['normal', 'italic'],
-})
+import SmoothScrollProvider from '@/components/SmoothScrollProvider'
 
 export const metadata: Metadata = {
-  title: 'Agent for Interior Design',
-  description: 'Premium Interior Design Portfolio - Modern Luxury Spaces',
+  title: 'Agent for Interior Design | Premium Portfolio',
+  description: 'Luxury interior design portfolio showcasing premium spaces',
 }
 
 export default function RootLayout({
@@ -33,8 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${playfair.variable} ${inter.variable} ${cormorant.variable}`}>
-        {children}
+      <body className="font-inter antialiased bg-background text-text-primary">
+        <SmoothScrollProvider>
+          {children}
+        </SmoothScrollProvider>
       </body>
     </html>
   )
