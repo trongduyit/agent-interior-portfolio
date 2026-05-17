@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const heroSlides = [
@@ -35,6 +35,10 @@ const heroSlides = [
 export default function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
+  const [showContent, setShowContent] = useState(false)
+  const { scrollY } = useScroll()
+
+  const backgroundY = useTransform(scrollY, [0, 500], [0, 150])
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % heroSlides.length)
@@ -42,6 +46,10 @@ export default function HeroSection() {
 
   const prevSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
+  }, [])
+
+  useEffect(() => {
+    setShowContent(true)
   }, [])
 
   useEffect(() => {
@@ -53,7 +61,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative h-screen w-full overflow-hidden"
+      className="relative h-screen w-full overflow-hidden bg-[#0a0a0a]"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -66,40 +74,78 @@ export default function HeroSection() {
           transition={{ duration: 0.8 }}
           className="absolute inset-0"
         >
-          <div
+          <motion.div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(${heroSlides[currentIndex].image})` }}
+            style={{
+              backgroundImage: `url(${heroSlides[currentIndex].image})`,
+              y: backgroundY,
+            }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
         </motion.div>
       </AnimatePresence>
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="font-playfair text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-4"
-        >
-          Agent for Interior Design
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="font-inter text-lg md:text-xl text-white/80 max-w-2xl"
-        >
-          Premium Interior Design Portfolio
-        </motion.p>
+        {showContent && (
+          <>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="font-inter text-sm md:text-base tracking-[0.3em] text-white/60 mb-4"
+            >
+              PREMIUM INTERIOR DESIGN
+            </motion.p>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+              className="font-playfair text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 text-center"
+            >
+              {'AGENT FOR INTERIOR DESIGN'.split(' ').map((word, i, arr) => (
+                <span key={`hero-word-${word}`} className="inline-block overflow-hidden">
+                  <motion.span
+                    className="inline-block"
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 + i * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+                  >
+                    {word}
+                  </motion.span>
+                  {i < arr.length - 1 && ' '}
+                </span>
+              ))}
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.2 }}
+              className="font-inter text-lg md:text-xl text-white/80 max-w-2xl"
+            >
+              Transforming spaces into extraordinary environments
+            </motion.p>
+
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.4 }}
+              className="mt-10 px-8 py-4 border border-white/30 text-white font-inter text-sm tracking-widest hover:bg-white/10 transition-colors"
+            >
+              EXPLORE PORTFOLIO
+            </motion.button>
+          </>
+        )}
       </div>
 
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
-          className="flex flex-col items-center text-white/60"
+          className="flex flex-col items-center text-white/60 cursor-pointer"
         >
-          <span className="text-sm font-inter mb-2">Scroll</span>
+          <span className="text-xs font-inter tracking-widest mb-2">SCROLL</span>
           <ChevronDown className="w-5 h-5" />
         </motion.div>
       </div>
@@ -111,27 +157,27 @@ export default function HeroSection() {
       >
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
           aria-label="Previous slide"
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors"
+          className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
           aria-label="Next slide"
         >
           <ChevronRight className="w-6 h-6" />
         </button>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex gap-3">
         {heroSlides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === currentIndex ? 'bg-secondary w-6' : 'bg-white/40'
+            className={`h-1 rounded-full transition-all duration-300 ${
+              index === currentIndex ? 'bg-[#d4af37] w-8' : 'bg-white/40 w-4'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
