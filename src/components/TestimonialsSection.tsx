@@ -45,12 +45,12 @@ export default function TestimonialsSection() {
             >
               {/* Quote mark */}
               <div className="absolute -top-4 -left-4 font-playfair text-8xl text-[#d4af37]/20">
-                "
+                &quot;
               </div>
 
               <div className="relative bg-[#1a1a1a] rounded-2xl p-8 md:p-12">
                 <p className="font-cormorant text-xl md:text-2xl lg:text-3xl italic text-white/90 leading-relaxed mb-8">
-                  "{testimonials[currentIndex].quote}"
+                  &quot;{testimonials[currentIndex].quote}&quot;
                 </p>
 
                 <div className="flex items-center gap-4">

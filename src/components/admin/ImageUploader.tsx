@@ -55,7 +55,7 @@ export default function ImageUploader({
             return file
           })
         )
-        if (file.progress >= 100) {
+        if (f.progress >= 100) {
           clearInterval(interval)
         }
       }, 500)

@@ -39,13 +39,14 @@ export default function VisitorGallery() {
           prev.map((file) => {
             if (file.id === f.id) {
               const newProgress = Math.min(file.progress + 25, 100)
-              if (newProgress === 100) {
+              const isComplete = newProgress === 100
+              const fileUrl = isComplete ? URL.createObjectURL(file.file) : undefined
+              if (isComplete) {
                 clearInterval(interval)
-                const url = URL.createObjectURL(file.file)
                 const galleryImage: GalleryImage = {
                   id: file.id,
-                  url,
-                  thumbnailUrl: url,
+                  url: fileUrl!,
+                  thumbnailUrl: fileUrl!,
                   publicId: file.id,
                   createdAt: new Date().toISOString(),
                   uploadedBy: 'visitor',
@@ -53,7 +54,7 @@ export default function VisitorGallery() {
                 addGalleryImage(galleryImage)
                 setImages((prev) => [galleryImage, ...prev])
               }
-              return { ...file, progress: newProgress, status: newProgress === 100 ? 'success' : 'uploading', url }
+              return { ...file, progress: newProgress, status: isComplete ? 'success' : 'uploading', url: fileUrl }
             }
             return file
           })

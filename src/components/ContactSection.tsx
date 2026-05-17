@@ -32,7 +32,7 @@ export default function ContactSection() {
         >
           <p className="font-inter text-sm tracking-[0.2em] text-[#d4af37] mb-2">CONTACT</p>
           <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold text-white">
-            Let's Create Together
+            Let&apos;s Create Together
           </h2>
         </motion.div>
 

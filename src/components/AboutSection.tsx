@@ -52,7 +52,7 @@ export default function AboutSection() {
             </div>
 
             <blockquote className="font-cormorant text-xl md:text-2xl lg:text-3xl italic text-[#6b6b6b] leading-relaxed border-l-2 border-[#d4af37] pl-6">
-              "Design is not just what it looks like and feels like. Design is how it works."
+              &quot;Design is not just what it looks like and feels like. Design is how it works.&quot;
             </blockquote>
 
             <p className="font-inter text-[#6b6b6b] leading-relaxed text-base md:text-lg">
