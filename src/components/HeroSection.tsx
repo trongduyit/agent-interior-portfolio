@@ -93,9 +93,11 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-              className="font-cormorant text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-light tracking-[0.15em] text-white mb-2"
+              className="font-cormorant text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-light tracking-[0.15em] mb-2"
             >
-              TRÂM HUỲNH
+              <span className="bg-gradient-to-r from-[#d4af37] via-[#f5e6a3] via-[#d4af37] to-[#f5e6a3] bg-clip-text text-transparent" style={{ textShadow: '0 0 60px rgba(212, 175, 55, 0.3)' }}>
+                TRÂM HUỲNH
+              </span>
             </motion.h1>
 
             {/* Tagline with elegant styling */}
