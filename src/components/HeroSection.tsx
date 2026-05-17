@@ -88,35 +88,31 @@ export default function HeroSection() {
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 text-center">
         {showContent && (
           <>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="font-inter text-sm md:text-base tracking-[0.3em] text-white/60 mb-4"
-            >
-              PREMIUM INTERIOR DESIGN
-            </motion.p>
-
             <motion.h1
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-              className="font-playfair text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 text-center"
+              className="font-cormorant text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-semibold text-white mb-4 text-center tracking-wide"
             >
-              {'AGENT FOR INTERIOR DESIGN'.split(' ').map((word, i, arr) => (
-                <span key={`hero-word-${word}`} className="inline-block overflow-hidden">
-                  <motion.span
-                    className="inline-block"
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.4 + i * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-                  >
-                    {word}
-                  </motion.span>
-                  {i < arr.length - 1 && ' '}
-                </span>
-              ))}
+              <span className="block">Tram Huynh</span>
             </motion.h1>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="relative"
+            >
+              <span className="font-cormorant text-lg md:text-xl lg:text-2xl tracking-[0.4em] text-white/70 uppercase">
+                Interior Designer
+              </span>
+              <motion.span
+                className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-24 h-px bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+              />
+            </motion.div>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}

@@ -44,10 +44,12 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
           className="text-center"
         >
-          <h1 className="font-playfair text-6xl font-bold bg-gradient-to-r from-[#d4af37] via-[#f0d875] to-[#d4af37] bg-clip-text text-transparent mb-8">
-            AID
+          <h1 className="font-cormorant text-5xl md:text-7xl font-semibold tracking-wider mb-2">
+            <span className="bg-gradient-to-r from-[#d4af37] via-[#f5e6a3] to-[#d4af37] bg-clip-text text-transparent">
+              Trâm Huỳnh
+            </span>
           </h1>
-          <p className="font-inter text-white/40 text-sm tracking-widest mb-6">LOADING</p>
+          <p className="font-cormorant text-lg md:text-xl tracking-[0.3em] text-white/60">Interior</p>
         </motion.div>
 
         <div className="w-64 h-[2px] bg-white/10 rounded-full overflow-hidden">
