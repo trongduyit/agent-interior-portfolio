@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import SmoothScrollProvider from '@/components/SmoothScrollProvider'
+import CustomCursor from '@/components/CustomCursor'
 
 export const metadata: Metadata = {
   title: 'Agent for Interior Design | Premium Portfolio',
@@ -15,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-inter antialiased bg-background text-text-primary">
+        <CustomCursor />
         <SmoothScrollProvider>
           {children}
         </SmoothScrollProvider>

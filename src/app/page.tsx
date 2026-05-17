@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import LoadingScreen from '@/components/LoadingScreen'
+import Header from '@/components/Header'
 import NavigationDots from '@/components/NavigationDots'
 import HeroSection from '@/components/HeroSection'
 import AboutSection from '@/components/AboutSection'
@@ -31,6 +32,7 @@ export default function Home() {
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
 
       <main className="relative">
+        <Header />
         <NavigationDots
           sections={sections}
           activeIndex={activeSection}
