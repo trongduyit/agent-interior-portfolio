@@ -81,71 +81,73 @@ export default function HeroSection() {
               y: backgroundY,
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
         </motion.div>
       </AnimatePresence>
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 text-center">
         {showContent && (
           <>
+            {/* Main Brand Name - London Design Group Style */}
             <motion.h1
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-              className="font-cormorant text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-semibold text-white mb-4 text-center tracking-wide"
+              transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+              className="font-cormorant text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-light tracking-[0.15em] text-white mb-2"
             >
-              <span className="block">Tram Huynh</span>
+              TRÂM HUỲNH
             </motion.h1>
 
+            {/* Tagline with elegant styling */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="relative"
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex items-center gap-6 mb-12"
             >
-              <span className="font-cormorant text-lg md:text-xl lg:text-2xl tracking-[0.4em] text-white/70 uppercase">
-                Interior Designer
+              <div className="w-16 h-px bg-gradient-to-r from-transparent to-[#d4af37]" />
+              <span className="font-cormorant text-sm md:text-base tracking-[0.4em] text-[#d4af37] uppercase">
+                Interior Design Studio
               </span>
-              <motion.span
-                className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-24 h-px bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-              />
+              <div className="w-16 h-px bg-gradient-to-l from-transparent to-[#d4af37]" />
             </motion.div>
 
+            {/* Subtitle */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
-              className="font-inter text-lg md:text-xl text-white/80 max-w-2xl"
+              transition={{ duration: 0.8, delay: 1 }}
+              className="font-cormorant text-lg md:text-xl lg:text-2xl text-white/70 max-w-2xl italic"
             >
-              Transforming spaces into extraordinary environments
+              Creating extraordinary spaces that inspire and elevate
             </motion.p>
 
+            {/* CTA Button */}
             <motion.button
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.4 }}
-              className="mt-10 px-8 py-4 border border-white/30 text-white font-inter text-sm tracking-widest hover:bg-white/10 transition-colors"
+              transition={{ duration: 0.8, delay: 1.3 }}
+              className="mt-12 px-10 py-4 border border-[#d4af37] text-[#d4af37] font-cormorant text-base tracking-[0.2em] uppercase hover:bg-[#d4af37] hover:text-[#0a0a0a] transition-all duration-500"
             >
-              EXPLORE PORTFOLIO
+              View Our Work
             </motion.button>
           </>
         )}
       </div>
 
+      {/* Scroll Indicator */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
-          className="flex flex-col items-center text-white/60 cursor-pointer"
+          className="flex flex-col items-center text-white/50 cursor-pointer"
         >
-          <span className="text-xs font-inter tracking-widest mb-2">SCROLL</span>
+          <span className="text-xs font-cormorant tracking-[0.3em] mb-2">SCROLL</span>
           <ChevronDown className="w-5 h-5" />
         </motion.div>
       </div>
 
+      {/* Navigation Arrows */}
       <div
         className={`absolute z-10 transition-opacity duration-300 ${
           isHovered ? 'opacity-100' : 'opacity-0'
@@ -153,27 +155,28 @@ export default function HeroSection() {
       >
         <button
           onClick={prevSlide}
-          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-[#d4af37] hover:text-[#d4af37] transition-colors"
           aria-label="Previous slide"
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-5 h-5" />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+          className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-[#d4af37] hover:text-[#d4af37] transition-colors"
           aria-label="Next slide"
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-5 h-5" />
         </button>
       </div>
 
+      {/* Slide Indicators */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex gap-3">
         {heroSlides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`h-1 rounded-full transition-all duration-300 ${
-              index === currentIndex ? 'bg-[#d4af37] w-8' : 'bg-white/40 w-4'
+            className={`h-0.5 rounded-full transition-all duration-500 ${
+              index === currentIndex ? 'w-8 bg-[#d4af37]' : 'w-4 bg-white/40'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
