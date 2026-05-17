@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 interface LoadingScreenProps {
@@ -8,67 +8,166 @@ interface LoadingScreenProps {
 }
 
 export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
-  const [progress, setProgress] = useState(0)
+  const [isAnimating, setIsAnimating] = useState(true)
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval)
-          return 100
-        }
-        return prev + 2
-      })
-    }, 40)
+    const timer = setTimeout(() => {
+      setIsAnimating(false)
+      setTimeout(onComplete, 800)
+    }, 2500)
 
-    return () => clearInterval(interval)
-  }, [])
-
-  useEffect(() => {
-    if (progress >= 100) {
-      const timer = setTimeout(onComplete, 500)
-      return () => clearTimeout(timer)
-    }
-  }, [progress, onComplete])
+    return () => clearTimeout(timer)
+  }, [onComplete])
 
   return (
     <AnimatePresence>
-      <motion.div
-        className="fixed inset-0 z-[100] bg-[#0a0a0a] flex flex-col items-center justify-center"
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.5 }}
-      >
+      {isAnimating && (
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-          className="text-center"
+          className="fixed inset-0 z-[100] bg-[#0a0a0a] flex flex-col items-center justify-center"
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <h1 className="font-cormorant text-5xl md:text-7xl font-semibold tracking-wider mb-2">
-            <span className="bg-gradient-to-r from-[#d4af37] via-[#f5e6a3] to-[#d4af37] bg-clip-text text-transparent">
-              Trâm Huỳnh
-            </span>
-          </h1>
-          <p className="font-cormorant text-lg md:text-xl tracking-[0.3em] text-white/60">Interior</p>
-        </motion.div>
+          {/* Background Pattern - Subtle geometric */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-1/4 left-1/4 w-64 h-64 border border-[#d4af37] rotate-45" />
+            <div className="absolute bottom-1/4 right-1/4 w-48 h-48 border border-[#d4af37] rotate-12" />
+          </div>
 
-        <div className="w-64 h-[2px] bg-white/10 rounded-full overflow-hidden">
+          {/* Main Content */}
           <motion.div
-            className="h-full bg-gradient-to-r from-[#d4af37] to-[#00f0ff]"
-            style={{ width: `${progress}%` }}
-            transition={{ ease: 'easeOut' }}
-          />
-        </div>
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+            className="text-center relative z-10"
+          >
+            {/* Logo Symbol */}
+            <motion.div
+              className="mb-8 relative"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <svg
+                width="60"
+                height="60"
+                viewBox="0 0 60 60"
+                className="mx-auto"
+              >
+                <motion.path
+                  d="M30 5 L55 50 L5 50 Z"
+                  fill="none"
+                  stroke="url(#goldGradient)"
+                  strokeWidth="1.5"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 1.5, ease: 'easeInOut' }}
+                />
+                <motion.circle
+                  cx="30"
+                  cy="35"
+                  r="8"
+                  fill="none"
+                  stroke="url(#goldGradient)"
+                  strokeWidth="1.5"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 1, delay: 0.5 }}
+                />
+                <defs>
+                  <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#d4af37" />
+                    <stop offset="50%" stopColor="#f5e6a3" />
+                    <stop offset="100%" stopColor="#d4af37" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="mt-4 font-inter text-white/30 text-xs"
-        >
-          {progress}%
-        </motion.p>
-      </motion.div>
+            {/* Brand Name */}
+            <motion.h1
+              className="font-cormorant text-4xl md:text-6xl lg:text-7xl font-light tracking-[0.15em] mb-3"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              <span className="text-white">Trâm Huỳnh</span>
+            </motion.h1>
+
+            {/* Tagline */}
+            <motion.p
+              className="font-cormorant text-sm md:text-base tracking-[0.4em] text-[#d4af37] uppercase"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
+              Interior Design Studio
+            </motion.p>
+
+            {/* Decorative Line */}
+            <motion.div
+              className="mt-8 mx-auto relative"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 1, delay: 0.6, ease: 'easeInOut' }}
+            >
+              <div className="w-24 h-px bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
+            </motion.div>
+          </motion.div>
+
+          {/* Loading Indicator - Elegant minimal */}
+          <motion.div
+            className="absolute bottom-16 left-1/2 -translate-x-1/2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+          >
+            <div className="flex items-center gap-3">
+              <motion.div
+                className="w-1 h-1 bg-[#d4af37] rounded-full"
+                animate={{ opacity: [0.3, 1, 0.3], scale: [0.8, 1.2, 0.8] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+              />
+              <motion.div
+                className="w-1 h-1 bg-[#d4af37] rounded-full"
+                animate={{ opacity: [0.3, 1, 0.3], scale: [0.8, 1.2, 0.8] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+              />
+              <motion.div
+                className="w-1 h-1 bg-[#d4af37] rounded-full"
+                animate={{ opacity: [0.3, 1, 0.3], scale: [0.8, 1.2, 0.8] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
+              />
+            </div>
+          </motion.div>
+
+          {/* Corner Decorations */}
+          <motion.div
+            className="absolute top-8 left-8 w-16 h-16 border-l border-t border-[#d4af37]/30"
+            initial={{ opacity: 0, x: -20, y: -20 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            transition={{ delay: 0.5 }}
+          />
+          <motion.div
+            className="absolute top-8 right-8 w-16 h-16 border-r border-t border-[#d4af37]/30"
+            initial={{ opacity: 0, x: 20, y: -20 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            transition={{ delay: 0.6 }}
+          />
+          <motion.div
+            className="absolute bottom-8 left-8 w-16 h-16 border-l border-b border-[#d4af37]/30"
+            initial={{ opacity: 0, x: -20, y: 20 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            transition={{ delay: 0.7 }}
+          />
+          <motion.div
+            className="absolute bottom-8 right-8 w-16 h-16 border-r border-b border-[#d4af37]/30"
+            initial={{ opacity: 0, x: 20, y: 20 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            transition={{ delay: 0.8 }}
+          />
+        </motion.div>
+      )}
     </AnimatePresence>
   )
 }
